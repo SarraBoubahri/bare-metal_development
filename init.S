@@ -12,11 +12,54 @@
 
 .long _debut_pile
 .long _start
+
+/* Exceptions cœur */
+.long _default_handler    // NMI
+.long _default_handler    // HardFault
+.long _default_handler    // MemManage
+.long _default_handler    // BusFault
+.long _default_handler    // UsageFault
+.long 0
+.long 0
+.long 0
+.long 0
+.long _default_handler    // SVCall
+.long _default_handler    // DebugMonitor
+.long 0
+.long _default_handler    // PendSV
+.long _default_handler    // SysTick
+
+/* IRQ externes 0..27 */
 .long _default_handler
 .long _default_handler
 .long _default_handler
 .long _default_handler
 .long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+.long _default_handler
+
+/* IRQ 28 = TIM2 */
 .long tim2_irq_handler
 
 
