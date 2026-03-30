@@ -25,9 +25,9 @@ typedef struct __attribute__((packed, aligned(4))) {
 
 // Registres matériels
 #define RCC_APB1LENR (*(volatile uint32_t*)(0x58024400 + 0x0E8))
-#define TIM2_BASE    0x40000000U
-#define TIM2         ((tim_t*)TIM2_BASE)
-#define NVIC_ISER0   (*(volatile uint32_t*)0xE000E100)
+#define TIM2_BASE 0x40000000U
+#define TIM2 ((tim_t*)TIM2_BASE)
+#define NVIC_ISER0 (*(volatile uint32_t*)0xE000E100)
 
 // Initialisation du TIM2
 void tim2_init(uint32_t psc, uint32_t arr)
