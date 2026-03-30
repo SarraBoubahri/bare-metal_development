@@ -1,44 +1,26 @@
 /*
  * gpio.h
- *
- *  Created on: 17 mars 2026
- *      Author: mi11p016
+ * Configuration et manipulation des GPIOs 
  */
 
 #ifndef GPIO_H_
 #define GPIO_H_
 
 typedef struct __attribute__((packed, aligned(4))) {
-  volatile uint32_t MODER;
+  volatile uint32_t MODER; // Mode des bits des ports GPIO
   volatile uint32_t reserved1[3];
-  volatile uint32_t IDR;
-  volatile uint32_t ODR;
+  volatile uint32_t IDR; // Entrée
+  volatile uint32_t ODR; // Sortie
 } gpio_t;
 
+void gpio_init(char port); // Initialiser un port GPIO
 
-  /* Initialiser un port GPIO
-     Active le périphérique GPIO associé au port donné en paramètre
-     au moyen du RCC.
-     Le port est identifié par une lettre de 'A' à 'K'.
-  */
-  void gpio_init(char port);
+void gpio_mode(char port, int bit, int dir); // Choisir le mode d'un bit d'un port GPIO
 
-  /* Choisir le mode d'un bit d'un port GPIO
-     Le bit est initialisé en entrée ou sortie en fonction de dir :
-       - 0 : sortie
-       - 1 : entrée
-     Le port est identifié par une lettre de 'A' à 'K'
-     Le bit par un numéro d'ordre de 0 à 15.
-  */
-  void gpio_mode(char port, int bit, int dir);
+void gpio_set(char port, int n, int value); // Affecter un bit à un port configuré en sortie
 
-  /* Affecter un bit à un port configuré en sortie */
-  void gpio_set(char port, int n, int value);
+int gpio_get(char port, int bit); // Lire un bit d'un port configuré en entrée
 
-  /* Lire un bit d'un port configuré en entrée */
-  int gpio_get(char port, int bit);
-
-  /* Inverser la valeur d'une sortie */
-  void gpio_toggle(char port, int bit);
+void gpio_toggle(char port, int bit); // Inverser la valeur d'une sortie
 
 #endif /* GPIO_H_ */
